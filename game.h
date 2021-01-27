@@ -10,7 +10,6 @@ void chooseRange(int& range, int& firstRangeNum);
 int generateRandomNumber(int range, int firstRangeNum);
 int getPlayerGuess(int range, int firstRangeNum, int& guessPoint, int& point);
 void printAnswer(int secretNumber, int guess, int guessCount, int point);
-void printScore(int guessCount, int point);
 
 void playGame() {
 	int range, firstRangeNum;
