@@ -6,7 +6,6 @@
 using namespace std;
 
 void menu();
-void playGame();
 void chooseRange(int& range, int& firstRangeNum);
 int generateRandomNumber(int range, int firstRangeNum);
 int getPlayerGuess(int range, int firstRangeNum, int& guessPoint, int& point);
