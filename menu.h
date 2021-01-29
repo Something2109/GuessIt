@@ -2,10 +2,14 @@
 #define _menu_h
 #include <iostream>
 #include <iomanip>
+#include <vector>
+#include <string>
+#include <fstream>
+#include "score.h"
 using namespace std;
 
-void menu();
 void chooseMenu();
+vector <Score> getScore(ifstream file);
 
 void menu() {
 	cout << setw(10) << "GUESS IT" << endl;
@@ -16,6 +20,23 @@ void menu() {
 	chooseMenu();
 }
 
+void scoreMenu() {
+	cout << "Name" << setw(20) << "Range" << setw(10) << "Count" << setw(10) << "Point" << endl;
+	ifstream file("score.txt");
+	if (file.is_open()) {
+		vector <Score> scoreList = getScore();
+		for (int i = 0; i < scoreList.size() - 1; i++) {
+			cout << scoreList[i];
+		}
+		cout << endl;
+	}
+	else {
+		cout << "score file not found" << endl;
+		cout << endl;
+	}
+	menu();
+}
+
 void chooseMenu() {
 	cout << "Choose: ";
 	string choose;
@@ -24,6 +45,10 @@ void chooseMenu() {
 	switch (choose[0]) {
 	case '0': {
 		playGame();
+		break;
+	}
+	case '1': {
+		scoreMenu();
 		break;
 	}
 	case '2': {

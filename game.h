@@ -22,23 +22,30 @@ void playGame() {
 		guess = getPlayerGuess(range, firstRangeNum, guessCount, point);
 		printAnswer(secretNumber, guess, guessCount, point);
 	} while (guess != secretNumber && guessCount < 101);
+	printToFile(range, guessCount, point);
 	menu();
 }
 
 void chooseRange(int& range, int& firstRangeNum) {
 	int firstNum, lastNum;
-	cout << "Choose a number range: " << endl;
+	cout << "Choose a number range (contain at least 100 numbers): " << endl;
 	cout << "First number: ";
 	cin >> firstNum;
 	cout << "Last number: ";
 	cin >> lastNum;
 	cout << endl;
-	while (lastNum == firstNum) {
-		cout << "Don't choose 2 equal numbers: " << endl;
+	while (lastNum == firstNum || abs(lastNum - firstNum + 1) < 100) {
+		if (lastNum == firstNum) {
+			cout << "Don't choose 2 equal numbers: " << endl;
+		}
+		else {
+			cout << "Your range is less than 100, choose again: " << endl;
+		}
 		cout << "First number: ";
 		cin >> firstNum;
 		cout << "Last number: ";
 		cin >> lastNum;
+		cout << endl;
 	}
 	range = abs(lastNum - firstNum);
 	firstRangeNum = min(firstNum, lastNum);
