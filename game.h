@@ -85,30 +85,24 @@ int getPlayerGuess(int range, int firstRangeNum, int& guessCount, int& point) {
 void printAnswer(int secretNumber, int guess, int guessCount, int point) {
 	if (secretNumber == guess) {
 		cout << "Correct!" << endl;
-		printScore(guessCount, point);
-		cout << endl;
 	}
 	else {
 		if (guessCount == 101) {
 			cout << "You lose!" << endl;
-			printScore(guessCount, point);
-			cout << endl;
 		}
 		else {
 			if (secretNumber > guess) {
 				cout << "more than " << guess << " pls" << endl;
-				printScore(guessCount, point);
-				cout << endl;
 			}
 			else {
 				if (secretNumber < guess) {
 					cout << "less than " << guess << " pls" << endl;
-					printScore(guessCount, point);
-					cout << endl;
 				}
 			}
 		}
 	}
+	printScore(guessCount, point);
+	cout << endl;
 }
 
 #endif
