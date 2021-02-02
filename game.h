@@ -2,6 +2,7 @@
 #define _game_h_ 
 #include <iostream>
 #include <cmath>
+#include <sstream>
 #include "score.h"
 using namespace std;
 
@@ -10,6 +11,19 @@ void chooseRange(int& range, int& firstRangeNum);
 int generateRandomNumber(int range, int firstRangeNum);
 int getPlayerGuess(int range, int firstRangeNum, int& guessPoint, int& point);
 void printAnswer(int secretNumber, int guess, int guessCount, int point);
+
+void input(int& n) {
+	string str;
+	cin >> str;
+	if (str[0] > '9' || str[0] < '0') {
+		cout << "Wrong Character, enter again: ";
+		input(n);
+	}
+	else {
+		stringstream ss(str);
+		ss >> n;
+	}
+}
 
 void playGame() {
 	int range, firstRangeNum;
@@ -30,9 +44,9 @@ void chooseRange(int& range, int& firstRangeNum) {
 	int firstNum, lastNum;
 	cout << "Choose a number range (contain at least 100 numbers): " << endl;
 	cout << "First number: ";
-	cin >> firstNum;
+	input(firstNum);
 	cout << "Last number: ";
-	cin >> lastNum;
+	input(lastNum);
 	cout << endl;
 	while (lastNum == firstNum || abs(lastNum - firstNum + 1) < 100) {
 		if (lastNum == firstNum) {
@@ -42,9 +56,9 @@ void chooseRange(int& range, int& firstRangeNum) {
 			cout << "Your range is less than 100, choose again: " << endl;
 		}
 		cout << "First number: ";
-		cin >> firstNum;
+		input(firstNum);
 		cout << "Last number: ";
-		cin >> lastNum;
+		input(lastNum);
 		cout << endl;
 	}
 	range = abs(lastNum - firstNum);
@@ -59,7 +73,7 @@ int generateRandomNumber(int range, int firstRangeNum) {
 int getPlayerGuess(int range, int firstRangeNum, int& guessCount, int& point) {
 	int guess;
 	cout << "Guess a number: ";
-	cin >> guess;
+	input(guess);
 	pointCount(guessCount, point);
 	while (guess > (firstRangeNum + range) || guess < firstRangeNum) {
 		if (guess > (firstRangeNum + range)) {
@@ -67,7 +81,7 @@ int getPlayerGuess(int range, int firstRangeNum, int& guessCount, int& point) {
 			printScore(guessCount, point);
 			cout << endl;
 			cout << "Guess a number: ";
-			cin >> guess;
+			input(guess);
 			pointCount(guessCount, point);
 		}
 		else {
@@ -75,7 +89,7 @@ int getPlayerGuess(int range, int firstRangeNum, int& guessCount, int& point) {
 			printScore(guessCount, point);
 			cout << endl;
 			cout << "Guess a number: ";
-			cin >> guess;
+			input(guess);
 			pointCount(guessCount, point);
 		}
 	}
