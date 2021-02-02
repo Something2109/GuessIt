@@ -21,7 +21,7 @@ void input(int& n) {
 	}
 	else {
 		stringstream ss(str);
-		ss >> n;
+		ss >> n >> str;
 	}
 }
 
